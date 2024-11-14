@@ -12,9 +12,8 @@ int main() {
     cin >> n;
 
     vector<int> bur(n), bur1(n), arrival(n), b(n), p(n), k(n), wat(n), tur(n);
-    vector<int> a(n * 10);  // Array for storing Gantt chart times
+    vector<int> a(n * 10);  
 
-    // Input burst times and arrival times
     for (int i = 0; i < n; i++) {
         cout << "Burst time for process P" << (i + 1) << ": ";
         cin >> bur[i];
@@ -26,26 +25,23 @@ int main() {
     cout << "Enter the time slice (in ms): ";
     cin >> t;
 
-    // Calculate the number of time slices needed for each process
     for (int i = 0; i < n; i++) {
-        b[i] = (bur[i] + t - 1) / t;  // Ceiling division for time slices
+        b[i] = (bur[i] + t - 1) / t;  
         m += b[i];
     }
 
     cout << "\nGANTT Chart\n";
-    cout << string(m * 8, '-');  // Draw the top line of the Gantt chart
+    cout << string(m * 8, '-');  
     cout << "\n";
 
-    a[0] = 0;  // Initial time
+    a[0] = 0;  
     while (j < m) {
-        x = (x + 1) % n;  // Cycle through processes
+        x = (x + 1) % n;  
 
-        // Wait for a process to arrive
         while (arrival[x] > currentTime) {
-            currentTime++;  // Increment time until a process arrives
+            currentTime++;  
         }
 
-        // Process execution
         if (bur[x] > 0) {
             int sliceTime = min(bur[x], t);
             bur[x] -= sliceTime;
@@ -63,13 +59,11 @@ int main() {
         }
     }
 
-    cout << "\n" << string(m * 8, '-') << "\n";  // Draw the bottom line of the Gantt chart
+    cout << "\n" << string(m * 8, '-') << "\n";  
 
-    // Print the Gantt chart time stamps
     for (j = 0; j <= m; j++) cout << a[j] << "\t";
     cout << "\n\n";
 
-    // Sorting processes based on their completion times
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
             if (p[i] > p[j]) {
@@ -79,13 +73,11 @@ int main() {
         }
     }
 
-    // Calculate waiting and turnaround times
     for (int i = 0; i < n; i++) {
         wat[i] = k[i] - arrival[p[i]] - bur1[p[i]];
         tur[i] = k[i] - arrival[p[i]];
     }
 
-    // Calculate total waiting time and turnaround time
     for (int i = 0; i < n; i++) {
         awat += wat[i];
         atur += tur[i];
@@ -94,7 +86,6 @@ int main() {
     awat /= n;
     atur /= n;
 
-    // Output the average times
     cout << "Average waiting time: " << awat << " ms\n";
     cout << "Average turn around time: " <<  atur << " ms\n";
 

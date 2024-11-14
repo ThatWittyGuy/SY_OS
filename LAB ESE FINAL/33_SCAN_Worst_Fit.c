@@ -16,21 +16,6 @@ void bubble_sort(int arr[], int n)
             }
 }
 
-void print_moves(int start, int requests[], int n, bool visited[], int *total_head_movement)
-{
-    int current = start;
-    printf("%d", current); // Start position
-
-    for (int i = 0; i < n; i++)
-    {
-        if (visited[i])
-            continue; // Skip if already visited
-        *total_head_movement += abs(current - requests[i]);
-        current = requests[i];
-        printf(" -> %d", current);
-    }
-}
-
 void scan(int requests[], int n, int start, int total_tracks)
 {
     int total_head_movement = 0;
