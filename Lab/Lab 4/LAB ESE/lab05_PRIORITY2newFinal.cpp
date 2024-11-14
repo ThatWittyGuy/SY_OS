@@ -33,19 +33,19 @@ for (size_t i = 0; i < ganttChart.size(); ++i) {
     }
 }
 
-    cout << endl;
+    cout << " |" << endl;
     
     // Second line: Display the completion times below the bars
     time = 0;
     for (size_t i = 0; i < ganttChart.size(); ++i) {
         // Print the completion time directly below each process or idle block
         if (i == 0) {
-            cout << " " << setw(4) << 0; // Initial time 0 for the first process
+            cout << 0; // Initial time 0 for the first process
         }
         time += ganttChart[i].second;
         if (i == ganttChart.size() - 1 || ganttChart[i].first != ganttChart[i + 1].first) {
             // Align the completion time
-            cout << setw(ganttChart[i].second * 4 + 1) << time;
+            cout << setw(ganttChart[i].second * 6 + 1) << time;
         }
     }
     cout << endl;
