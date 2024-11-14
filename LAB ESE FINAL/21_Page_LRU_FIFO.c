@@ -1,3 +1,4 @@
+// LRU code
 #include <stdio.h>
 int main() {
     int i, j, n, a[50], frame[10], no, k, count = 0, pos, flag1;
